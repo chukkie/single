@@ -1,0 +1,19 @@
+trigger: none
+
+pr: none
+
+pool:
+  name: SelfHosted-Linux   # or Windows
+
+variables:
+  PYTHONUNBUFFERED: "1"
+
+steps:
+- checkout: self
+
+- script: |
+    python3 --version
+    python3 cmp_client.py
+  displayName: "Call CMP API"
+  env:
+    CMP_API_KEY: $(CMP_API_KEY)
